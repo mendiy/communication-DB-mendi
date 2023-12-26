@@ -46,5 +46,5 @@ io.on("connection", socketController);
 
 
 
-export default io;
-// export { io };
+export default app;
+export { io };
