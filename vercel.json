@@ -1,3 +1,5 @@
+// vercel.json
+
 {
   "version": 2,
   "builds": [
@@ -8,9 +10,9 @@
   ],
   "routes": [
     {
-      "src": "/socket.io",
-      "dest": "/index.js",
-      "methods": ["GET", "POST"]
+      "handle": "websocket",
+      "src": "/socket.io/(.*)",
+      "dest": "/index.js"
     },
     {
       "src": "/(.*)",
