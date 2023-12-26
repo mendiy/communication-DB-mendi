@@ -46,5 +46,5 @@ server.listen(process.env.PORT || 3000, () => {
 
 
 
-export default app;
+export default server;
 export { io };
