@@ -11,7 +11,7 @@ import chatMessagesController from "./controllers/chatMessages.js";
 
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
-const port = process.env.PORT;
+// const port = process.env.PORT;
 
 
 app.get('/', (req, res) => {
@@ -41,9 +41,9 @@ app.post("/send/:senderId/:gettingId", chatMessagesController);
 // Listens for new connections to the server.
 io.on("connection", socketController);
 
-server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// server.listen(port, () => {
+//   console.log(`Server running on port ${port}`);
+// });
 
 
 
