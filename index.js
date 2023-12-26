@@ -11,7 +11,7 @@ import chatMessagesController from "./controllers/chatMessages.js";
 
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
-// const port = process.env.PORT;
+const port = process.env.PORT;
 
 
 app.get('/', (req, res) => {
@@ -21,19 +21,14 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+
 
 connectDB();
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: '*',
     methods: ["GET", "POST"],
   },
 });
@@ -46,9 +41,9 @@ app.post("/send/:senderId/:gettingId", chatMessagesController);
 // Listens for new connections to the server.
 io.on("connection", socketController);
 
-// server.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
 
 
